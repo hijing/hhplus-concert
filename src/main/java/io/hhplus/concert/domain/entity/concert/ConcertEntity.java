@@ -1,4 +1,4 @@
-package io.hhplus.concert.domain.entity;
+package io.hhplus.concert.domain.entity.concert;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
