@@ -1,28 +1,33 @@
-package io.hhplus.concert.domain.entity.concert;
+package io.hhplus.concert.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "concert")
-public class ConcertEntity {
+@Table(name = "Concert")
+public class Concert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("콘서트 ID")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name="name", nullable = false)
     @Comment("콘서트 제목")
     private String concertName;
 
-    public ConcertEntity(Long id, String concertName) {
+//    public Concert(Long id, String concertName) {
+//        this.id = id;
+//        this.concertName = concertName;
+//    }
+
+    @Builder
+    public Concert(Long id, String concertName) {
         this.id = id;
         this.concertName = concertName;
     }
+
 }

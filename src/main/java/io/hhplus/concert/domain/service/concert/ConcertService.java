@@ -1,6 +1,5 @@
 package io.hhplus.concert.domain.service.concert;
 
-import io.hhplus.concert.domain.repository.concert.ConcertRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +7,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ConcertService {
 
-    private final ConcertRepository concertRepository;
-
+//    private final ConcertRepository concertRepository;
+//
+//    public void selectReservationDate() {
+//        concertRepository.findByAvailableDate(concertId);
+//    }
 }
