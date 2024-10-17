@@ -25,11 +25,25 @@
 ### 유저 대기열 토큰 기능
 ```mermaid
 sequenceDiagram
-    사용자 ->> 대기열 토큰 : 대기열 요청
-    대기열 토큰 ->> DB : 토큰 발급 요청
-    DB ->> DB : 토큰 생성
-    DB ->> 대기열 토큰 : 토큰 생성 응답
-    대기열 토큰 ->> 사용자 : 대기열 응답
+    actor User
+    User ->> Client: 서비스 접속 요청
+    Client ->> Queue: 대기열 참여 요청
+    Queue ->> Queue: 대기 순서 할당
+    Queue -->> Client: 대기 번호 반환
+    Client -->> User: 대기 상태 표시
+    
+    loop 대기 상태 확인
+    Client ->> Queue: 대기 상태 확인 요청
+    Queue -->> Client: 대기 상태 응답
+    Client -->> User: 대기 상태 업데이트
+    end
+    
+    Queue ->> Queue: 사용자 차례 도달
+    Queue ->> Auth: 토큰 발급 요청
+    Auth ->> Auth: 토큰 생성
+    Auth -->> Queue: 토큰 반환
+    Queue -->> Client: 접속 토큰 전달
+    Client -->> User: 서비스 접속 허용
 ```
 
 ### 예약 가능 날짜 / 좌석 API
